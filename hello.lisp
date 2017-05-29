@@ -22,9 +22,8 @@
       (sdl2:with-gl-context (gl-context win)
         ;; Basic window/gl setup
         (setup-gl win gl-context)
- 
         ;; Run main loop
-        (main-loop win #'render)))))
+        (main-loop win)))))
 
 (defun setup-gl (win gl-context)
   "Setup OpenGL with the window WIN and the gl context of GL-CONTEXT"
@@ -58,7 +57,7 @@
   (gl:end)
   (gl:flush))
  
-(defun main-loop (win render-fn)
+(defun main-loop (win)
   "Run the game loop that handles input, rendering through the
   render function RENDER-FN, amongst others."
   (sdl2:with-event-loop (:method :poll)
