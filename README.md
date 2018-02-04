@@ -5,14 +5,18 @@ to using Emacs and SLIME.
 
 ## Requirements
 
-1. Emacs
-2. SLIME (Emacs package; included in Emacs nowadays I think)
-3. Quicklisp (Common Lisp package manager)
+1. SDL2
+2. Emacs
+3. [SBCL](http://sbcl.org/)
+4. SLIME (`M-x package-install<RET>slime<RET>`)
+5. Add `(setq inferior-lisp-program "/run/current-system/sw/bin/sbcl")` to your
+   `~/.emacs`. (or whatever the path to `sbcl` is)
+5. [Quicklisp](https://www.quicklisp.org/beta/#installation) (Common Lisp package manager)
 
 ## Usage
 
 1. Open `hello.lisp` in emacs
-2. Run `slime-init` in emacs
+2. Run `slime` in emacs
 3. Run `(ql:quickload "sdl2")` and `(ql:quickload "cl-opengl")` in the newly
    created `CL-USER` repl. They'll be loaded if on your computer already, or
    downloaded if not.
