@@ -23,7 +23,7 @@
         ;; Basic window/gl setup
         (setup-gl win gl-context)
         ;; Run main loop
-        (main-loop win)))))
+        (main-loop win 'render)))))
 
 (defun setup-gl (win gl-context)
   "Setup OpenGL with the window WIN and the gl context of GL-CONTEXT"
@@ -57,7 +57,7 @@
   (gl:end)
   (gl:flush))
  
-(defun main-loop (win)
+(defun main-loop (win render-fn)
   "Run the game loop that handles input, rendering through the
   render function RENDER-FN, amongst others."
   (sdl2:with-event-loop (:method :poll)
@@ -65,8 +65,7 @@
               (when (sdl2:scancode= (sdl2:scancode-value keysym) :scancode-escape)
                 (sdl2:push-event :quit)))
     (:idle ()
-           (render)
-;           (funcall render-fn)
+           (funcall render-fn)
            ;; Swap back buffer
            (sdl2:gl-swap-window win))
     (:quit () t)))
